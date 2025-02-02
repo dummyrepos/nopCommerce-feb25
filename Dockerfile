@@ -9,6 +9,8 @@ LABEL project="learning"
 LABEL author="khaja"
 ARG USERNAME=nop
 RUN adduser -D -h /nop -s /bin/sh ${USERNAME}
+USER ${USERNAME}
+WORKDIR /nop
 COPY --from=build --chown=${USERNAME}:${USERNAME} /build/published /nop
 ENV ASPNETCORE_URLS="http://0.0.0.0:5000"
 EXPOSE 5000
